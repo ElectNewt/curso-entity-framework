@@ -1,2 +1,3 @@
 # curso-entity-framework
-codigo del curso de entity framework en netmentor.es
+código del curso de entity framework en [netmentor.es](https://www.netmentor.es/curso/curso-entity-framework])
+
