@@ -1,0 +1,6 @@
+FROM mysql:latest
+
+ENV MYSQL_DATABASE=cursoEF
+ENV MYSQL_USER=cursoEFuser
+ENV MYSQL_PASSWORD=cursoEFpass
+ENV MYSQL_ROOT_PASSWORD=cursoEFpass
