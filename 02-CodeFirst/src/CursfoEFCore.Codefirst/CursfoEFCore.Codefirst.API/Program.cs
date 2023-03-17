@@ -14,7 +14,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     CursoEfContext context = scope.ServiceProvider.GetRequiredService<CursoEfContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
 }
 
 
