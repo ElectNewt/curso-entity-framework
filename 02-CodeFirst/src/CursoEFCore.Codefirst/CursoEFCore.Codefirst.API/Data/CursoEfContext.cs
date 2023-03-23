@@ -1,7 +1,7 @@
-﻿using CursfoEFCore.Codefirst.API.Data.Entities;
+﻿using CursoEFCore.Codefirst.API.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CursfoEFCore.Codefirst.API.Data;
+namespace CursoEFCore.Codefirst.API.Data;
 
 public class CursoEfContext : DbContext
 {

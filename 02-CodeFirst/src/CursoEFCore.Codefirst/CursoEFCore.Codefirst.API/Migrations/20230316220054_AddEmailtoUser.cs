@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CursfoEFCore.Codefirst.API.Migrations
+namespace CursoEFCore.Codefirst.API.Migrations
 {
     /// <inheritdoc />
     public partial class AddEmailtoUser : Migration

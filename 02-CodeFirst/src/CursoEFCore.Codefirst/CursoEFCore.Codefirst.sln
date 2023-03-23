@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursfoEFCore.Codefirst.API", "CursfoEFCore.Codefirst.API\CursfoEFCore.Codefirst.API.csproj", "{33E41099-E414-41B5-A087-ADEBA3FCA120}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoEFCore.Codefirst.API", "CursoEFCore.Codefirst.API\CursoEFCore.Codefirst.API.csproj", "{33E41099-E414-41B5-A087-ADEBA3FCA120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

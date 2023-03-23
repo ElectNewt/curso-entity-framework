@@ -1,4 +1,4 @@
-using CursfoEFCore.Codefirst.API.Data;
+using CursoEFCore.Codefirst.API.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

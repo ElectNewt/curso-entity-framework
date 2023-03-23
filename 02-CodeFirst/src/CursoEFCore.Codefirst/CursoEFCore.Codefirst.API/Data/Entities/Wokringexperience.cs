@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CursfoEFCore.Codefirst.API.Data.Entities;
+namespace CursoEFCore.Codefirst.API.Data.Entities;
 
 public class Wokringexperience
 {

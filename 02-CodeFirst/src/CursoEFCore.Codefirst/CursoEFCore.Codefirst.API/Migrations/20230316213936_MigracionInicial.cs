@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace CursfoEFCore.Codefirst.API.Migrations
+namespace CursoEFCore.Codefirst.API.Migrations
 {
     /// <inheritdoc />
     public partial class MigracionInicial : Migration
