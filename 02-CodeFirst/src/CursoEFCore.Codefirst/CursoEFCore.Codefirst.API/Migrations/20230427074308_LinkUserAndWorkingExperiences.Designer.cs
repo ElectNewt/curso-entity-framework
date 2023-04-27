@@ -3,6 +3,7 @@ using System;
 using CursoEFCore.Codefirst.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoEFCore.Codefirst.API.Migrations
 {
     [DbContext(typeof(CursoEfContext))]
-    partial class CursoEfContextModelSnapshot : ModelSnapshot
+    [Migration("20230427074308_LinkUserAndWorkingExperiences")]
+    partial class LinkUserAndWorkingExperiences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace CursoEFCore.Codefirst.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
@@ -85,7 +88,7 @@ namespace CursoEFCore.Codefirst.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wokringexperiences", (string)null);
+                    b.ToTable("Wokringexperiences");
                 });
 
             modelBuilder.Entity("CursoEFCore.Codefirst.API.Data.Entities.Wokringexperience", b =>

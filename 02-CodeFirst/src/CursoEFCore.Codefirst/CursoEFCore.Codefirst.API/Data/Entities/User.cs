@@ -8,4 +8,6 @@ public class User
     public string UserName { get; set; }
     [MaxLength(50)]
     public string Email { get; set; }
+    
+    public ICollection<Wokringexperience> Wokringexperiences { get; set; }
 }

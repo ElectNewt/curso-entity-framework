@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMySql();
-    
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 
@@ -21,7 +22,7 @@ using (var scope = app.Services.CreateScope())
 
 
 app.MapGet("/", () => "Hello World!");
-
+app.MapControllers();
 
 app.UseSwagger();
 app.UseSwaggerUI();
