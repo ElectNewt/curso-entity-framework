@@ -1,5 +1,6 @@
 ﻿using CursoEFCore.Codefirst.API.Data;
 using CursoEFCore.Codefirst.API.Data.Entities;
+using CursoEFCore.Codefirst.API.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +12,13 @@ namespace CursoEFCore.Codefirst.API.Controllers;
 public class RelationsController : Controller
 {
     private readonly CursoEfContext _context;
+    private readonly IUserRepository _userRepository;
 
 
-    public RelationsController(CursoEfContext context)
+    public RelationsController(CursoEfContext context, IUserRepository userRepository)
     {
         _context = context;
+        _userRepository = userRepository;
     }
 
     [HttpPost("InsertDataExample1")]
@@ -74,14 +77,10 @@ public class RelationsController : Controller
             }
         };
 
-
-        await _context.Users.AddAsync(user1);
-        await _context.SaveChangesAsync();
+        await _userRepository.Insert(user1);
     }
 
     [HttpGet("{userId}")]
     public async Task<User?> GetExample(int userId)
-        => await _context.Users
-            .Include(u => u.Wokringexperiences)
-            .FirstOrDefaultAsync(a => a.Id == userId);
+        => await _userRepository.GetById(userId);
 }
