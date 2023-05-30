@@ -1,8 +1,8 @@
 ﻿using CursoEFCore.Codefirst.API.Data;
 using CursoEFCore.Codefirst.API.Data.Entities;
 using CursoEFCore.Codefirst.API.Data.Repositories;
+using CursoEFCore.Codefirst.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CursoEFCore.Codefirst.API.Controllers;
 
@@ -11,47 +11,19 @@ namespace CursoEFCore.Codefirst.API.Controllers;
 [Route("[controller]")]
 public class RelationsController : Controller
 {
-    private readonly CursoEfContext _context;
     private readonly IUserRepository _userRepository;
+    private readonly InsertUser _insertUser;
 
 
-    public RelationsController(CursoEfContext context, IUserRepository userRepository)
+    public RelationsController(IUserRepository userRepository, InsertUser insertUser)
     {
-        _context = context;
         _userRepository = userRepository;
+        _insertUser = insertUser;
     }
 
-    [HttpPost("InsertDataExample1")]
-    public async Task InsertDataExample1()
-    {
-        User user1 = new User()
-        {
-            Email = $"{Guid.NewGuid()}@mail.com",
-            UserName = "id1"
-        };
-
-        List<Wokringexperience> workingExperiences1 = new List<Wokringexperience>()
-        {
-            new Wokringexperience()
-            {
-                UserId = user1.Id,
-                Name = "experience 1",
-                Details = "details1",
-                Environment = "environment"
-            },
-            new Wokringexperience()
-            {
-                UserId = user1.Id,
-                Name = "experience 2",
-                Details = "details2",
-                Environment = "environment"
-            }
-        };
-
-        await _context.Users.AddAsync(user1);
-        await _context.Wokringexperiences.AddRangeAsync(workingExperiences1);
-        await _context.SaveChangesAsync();
-    }
+    [HttpPost("InsertDataExample/{id}")]
+    public async Task InsertDataExample1(int id)
+        => await _insertUser.Execute(id);
 
     [HttpPost("InsertDataExample2")]
     public async Task InsertDataExample2()

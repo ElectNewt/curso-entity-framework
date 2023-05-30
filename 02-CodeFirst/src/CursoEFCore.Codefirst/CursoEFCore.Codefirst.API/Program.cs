@@ -1,16 +1,23 @@
+using System.Text.Json.Serialization;
 using CursoEFCore.Codefirst.API.Data;
 using CursoEFCore.Codefirst.API.Data.Connections;
 using CursoEFCore.Codefirst.API.Data.Repositories;
+using CursoEFCore.Codefirst.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMySql();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddControllers();
+builder.Services.AddScoped<IWorkingExperienceRepository, WorkingExperienceRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<InsertUser>();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 var app = builder.Build();
 
