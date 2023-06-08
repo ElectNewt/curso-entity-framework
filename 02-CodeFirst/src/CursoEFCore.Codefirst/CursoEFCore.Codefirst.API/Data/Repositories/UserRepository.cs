@@ -8,6 +8,9 @@ public interface IUserRepository
 {
     Task<User> Insert(User user);
     Task<User?> GetById(int id);
+    Task<List<User>> GetAll();
+    void Update(User user);
+    Task<bool> Delete(int id);
 }
 
 public class UserRepository : IUserRepository
@@ -22,6 +25,7 @@ public class UserRepository : IUserRepository
     public async Task<User> Insert(User user)
     {
         EntityEntry<User> insertedUser = await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
         return insertedUser.Entity;
     }
 
@@ -29,4 +33,31 @@ public class UserRepository : IUserRepository
         => await _context.Users
             .Include(a => a.Wokringexperiences)
             .FirstOrDefaultAsync(x => x.Id == id);
+
+    public void Update(User user)
+    {
+        _context.Users.Update(user);
+    }
+
+
+    public async Task<List<User>> GetAll()
+        => await _context.Users.ToListAsync();
+
+    public async Task<bool> Delete(int id)
+    {
+        User? user = await _context.Users
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (user == null)
+            return false;
+
+        _context.Users.Remove(user);
+        return true;
+    }
+
+    public async Task<List<User>> GovernmentUsers()
+        => await _context.Users
+            .Include(a => a.Wokringexperiences
+                .Where(we => we.Name == "Government"))
+            .ToListAsync();
 }

@@ -12,7 +12,7 @@ public class InsertUser
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<bool> Execute(int id)
+    public async Task<User> Execute(int id)
     {
         User user = new User()
         {
@@ -38,10 +38,10 @@ public class InsertUser
             }
         };
         
-        _ = await _unitOfWork.UserRepository.Insert(user);
+        user = await _unitOfWork.UserRepository.Insert(user);
         await _unitOfWork.WorkingExperienceRepository.Insert(workingExperiences);
         _ = await _unitOfWork.Save();
         
-        return true;
+        return user;
     }
 }

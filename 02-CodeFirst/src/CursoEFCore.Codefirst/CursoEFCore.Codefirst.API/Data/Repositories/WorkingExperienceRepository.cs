@@ -18,4 +18,5 @@ public class WorkingExperienceRepository : IWorkingExperienceRepository
 
     public async Task Insert(List<Wokringexperience> workingExperiences)
         => await _context.Wokringexperiences.AddRangeAsync(workingExperiences);
+
 }
