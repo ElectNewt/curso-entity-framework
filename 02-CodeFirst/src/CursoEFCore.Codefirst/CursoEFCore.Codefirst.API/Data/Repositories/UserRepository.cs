@@ -51,7 +51,10 @@ public class UserRepository : IUserRepository
         if (user == null)
             return false;
 
-        _context.Users.Remove(user);
+        user.IsDeleted = true;
+        user.DeletedTimeUtc = DateTime.UtcNow;
+
+        _context.Users.Update(user);
         return true;
     }
 

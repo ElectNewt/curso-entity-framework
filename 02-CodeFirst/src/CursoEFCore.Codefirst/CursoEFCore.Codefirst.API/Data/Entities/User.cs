@@ -2,7 +2,7 @@
 
 namespace CursoEFCore.Codefirst.API.Data.Entities;
 
-public class User
+public class User : CursoEFBaseEntity
 {
     public int Id { get; set; }
     public string UserName { get; set; }

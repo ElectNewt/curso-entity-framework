@@ -16,6 +16,9 @@ public class CursoEfContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Wokringexperience>()
+            .HasQueryFilter(a => !a.IsDeleted);
+        
         modelBuilder.ApplyConfiguration(new UserSeed());
     }
 }
