@@ -7,7 +7,9 @@ public static class DatabaseDiExtensions
     public static void AddMySql(this IServiceCollection services)
     {
         services.AddDbContext<CursoEfContext>(options=>
-            options.UseMySQL("server=127.0.0.1;port=4306;database=cursoEF;user=root;password=cursoEFpass"));
+            options
+            .UseLazyLoadingProxies()
+            .UseMySQL("server=127.0.0.1;port=4306;database=cursoEF;user=root;password=cursoEFpass"));
     }
     
     public static void AddSqlServer(this IServiceCollection services, IConfiguration configuration)

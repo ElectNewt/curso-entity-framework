@@ -9,5 +9,5 @@ public class User : CursoEFBaseEntity
     [MaxLength(50)]
     public string Email { get; set; }
     
-    public ICollection<Wokringexperience> Wokringexperiences { get; set; }
+    public virtual ICollection<Wokringexperience> Wokringexperiences { get; set; }
 }
