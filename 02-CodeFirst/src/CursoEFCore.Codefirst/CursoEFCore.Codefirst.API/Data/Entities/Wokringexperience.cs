@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CursoEFCore.Codefirst.API.Data.Entities;
 
-public class Wokringexperience : CursoEFBaseEntity
+public class Wokringexperience : CursoEFBaseEntity<int>
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
 
     public int UserId { get; set; }
     public virtual User User { get; set; }

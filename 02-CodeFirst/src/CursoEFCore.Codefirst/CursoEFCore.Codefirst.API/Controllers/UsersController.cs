@@ -2,6 +2,7 @@ using CursoEFCore.Codefirst.API.Data.Entities;
 using CursoEFCore.Codefirst.API.Data.Repositories;
 using CursoEFCore.Codefirst.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CursoEFCore.Codefirst.API.Controllers;
 
@@ -22,11 +23,11 @@ public class UsersController : Controller
 
     [HttpGet]
     public async Task<List<User>> GetAll()
-        => await _unitOfWork.UserRepository.GetAll();
+        => await _unitOfWork.UserRepository.GetAll().ToListAsync();
     
     [HttpGet("{userId}")]
     public async Task<User?> GetById(int userId)
-        => await _unitOfWork.UserRepository.GetById(userId);
+        => await _unitOfWork.UserRepository.GetByIdWithWorkingExperiences(userId);
 
     [HttpPost]
     public async Task<User> Create(int uniqueId)
@@ -39,7 +40,7 @@ public class UsersController : Controller
     [HttpDelete("{userId}")]
     public async Task<bool> Delete(int userId)
     {
-        bool result = await _unitOfWork.UserRepository.Delete(userId);
+        bool result = await _unitOfWork.UserRepository.SoftDelete(userId);
         await _unitOfWork.Save();
         return result;
     }
