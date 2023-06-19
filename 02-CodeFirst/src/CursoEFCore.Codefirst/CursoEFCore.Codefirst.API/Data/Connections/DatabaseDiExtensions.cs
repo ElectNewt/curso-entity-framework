@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CursoEFCore.Codefirst.API.Data.Interceptors;
+using Microsoft.EntityFrameworkCore;
 
 namespace CursoEFCore.Codefirst.API.Data.Connections;
 
@@ -9,6 +10,7 @@ public static class DatabaseDiExtensions
         services.AddDbContext<CursoEfContext>(options=>
             options
             .UseLazyLoadingProxies()
+            .AddInterceptors(new ReadExampleInterceptor())
             .UseMySQL("server=127.0.0.1;port=4306;database=cursoEF;user=root;password=cursoEFpass"));
     }
     

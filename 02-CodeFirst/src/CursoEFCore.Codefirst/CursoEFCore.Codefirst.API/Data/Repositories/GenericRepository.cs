@@ -17,6 +17,7 @@ public interface IGenericRepository<T, TId>
 
 public abstract class GenericRepository<T, TId> : IGenericRepository<T, TId>
     where T : CursoEFBaseEntity<TId>
+    where TId : IEquatable<TId>
 {
     private readonly CursoEfContext _context;
     protected DbSet<T> Entities => _context.Set<T>();
@@ -34,7 +35,7 @@ public abstract class GenericRepository<T, TId> : IGenericRepository<T, TId>
 
     public async Task<T?> GetById(TId id)
         => await _context.Set<T>()
-            .FindAsync(id);
+            .FirstAsync(a=>a.Id.Equals(id));
 
 
     public IQueryable<T> GetAll()
