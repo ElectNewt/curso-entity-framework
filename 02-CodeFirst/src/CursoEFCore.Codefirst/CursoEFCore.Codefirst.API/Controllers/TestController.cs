@@ -38,4 +38,14 @@ public class TestController : Controller
 
         return true;
     }
+
+
+    [HttpGet("cache-level1/{userId}")]
+    public async Task<User?> CacheLevel1(int userId)
+    {
+        User? user =await _context.Users.FirstOrDefaultAsync(a => a.Id == userId);
+        
+        User? cachedUser =await _context.Users.FirstOrDefaultAsync(a => a.Id == userId);
+        return cachedUser;
+    }
 }
