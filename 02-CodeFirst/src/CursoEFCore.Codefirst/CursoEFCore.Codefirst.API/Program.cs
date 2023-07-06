@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
-builder.Services.AddMySql();
+builder.Services.AddPostgreSql(builder.Configuration);
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWorkingExperienceRepository, WorkingExperienceRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

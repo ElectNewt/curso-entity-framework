@@ -43,6 +43,7 @@ public abstract class GenericRepository<T, TId> : IGenericRepository<T, TId>
 
     public void Update(T entity)
     {
+        entity.LastUpdateUtc = DateTime.UtcNow;
         _context.Set<T>().Update(entity);
     }
 

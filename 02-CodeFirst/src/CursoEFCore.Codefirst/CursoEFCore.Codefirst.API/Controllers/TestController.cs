@@ -1,5 +1,6 @@
 using CursoEFCore.Codefirst.API.Data;
 using CursoEFCore.Codefirst.API.Data.Entities;
+using CursoEFCore.Codefirst.API.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,13 @@ namespace CursoEFCore.Codefirst.API.Controllers;
 public class TestController : Controller
 {
     private readonly CursoEfContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TestController(CursoEfContext context)
+
+    public TestController(CursoEfContext context, IUnitOfWork unitOfWork)
     {
         _context = context;
+        _unitOfWork = unitOfWork;
     }
 
     [HttpGet("iqueryablepagination")]
@@ -47,5 +51,21 @@ public class TestController : Controller
         
         User? cachedUser =await _context.Users.FirstOrDefaultAsync(a => a.Id == userId);
         return cachedUser;
+    }
+    
+    [HttpPut("concurrency/update-email/{id}")]
+    public async Task<bool> UpdateEmail(int id, string newEmail)
+    {
+        User? user = await _unitOfWork.UserRepository.GetById(id);
+        if (user != null)
+        {
+            //Sleep 10 seconds to be able to test the concurrency issue
+            Thread.Sleep(10000);
+            user.Email = newEmail;
+            _unitOfWork.UserRepository.Update(user);
+            await _unitOfWork.Save();
+        }
+
+        return true;
     }
 }

@@ -3,6 +3,7 @@ using System;
 using CursoEFCore.Codefirst.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CursoEFCore.Codefirst.API.Migrations
 {
     [DbContext(typeof(CursoEfContext))]
-    partial class CursoEfContextModelSnapshot : ModelSnapshot
+    [Migration("20230706101012_LastupdateConcurrency")]
+    partial class LastupdateConcurrency
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

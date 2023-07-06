@@ -21,7 +21,7 @@ public class UserSeed : IEntityTypeConfiguration<User>
         foreach (int index in Enumerable.Range(1, 50))
         {
             users.Add(new User
-                { Email = $"example{index}@mail.com", Id = index, UserName = $"user{index}", IsDeleted = false });
+                { Email = $"example{index}@mail.com", Id = index, UserName = $"user{index}", IsDeleted = false});
         }
 
         return users;

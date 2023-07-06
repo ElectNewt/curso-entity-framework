@@ -1,4 +1,6 @@
-﻿namespace CursoEFCore.Codefirst.API.Data.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace CursoEFCore.Codefirst.API.Data.Repositories;
 
 public interface IUnitOfWork : IDisposable
 {
@@ -22,7 +24,19 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public async Task<int> Save()
-        => await _context.SaveChangesAsync();
+    {
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException concurrencyException)
+        {
+            Console.WriteLine("error de concurrencia");
+            //Manejar la excepción del conflicto
+        }
+        return 0;
+    }
+ 
 
     public void Dispose()
     {
