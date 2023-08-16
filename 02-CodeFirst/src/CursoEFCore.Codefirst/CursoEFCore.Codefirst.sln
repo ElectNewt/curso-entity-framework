@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoEFCore.Codefirst.API", "CursoEFCore.Codefirst.API\CursoEFCore.Codefirst.API.csproj", "{33E41099-E414-41B5-A087-ADEBA3FCA120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoEFCore.Codefirst.Test", "CursoEFCore.Codefirst.Test\CursoEFCore.Codefirst.Test.csproj", "{15FC0C99-CA2D-40C1-8F83-EB94EFBF3EFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{33E41099-E414-41B5-A087-ADEBA3FCA120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33E41099-E414-41B5-A087-ADEBA3FCA120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33E41099-E414-41B5-A087-ADEBA3FCA120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FC0C99-CA2D-40C1-8F83-EB94EFBF3EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FC0C99-CA2D-40C1-8F83-EB94EFBF3EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FC0C99-CA2D-40C1-8F83-EB94EFBF3EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FC0C99-CA2D-40C1-8F83-EB94EFBF3EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
