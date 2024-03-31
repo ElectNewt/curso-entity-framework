@@ -8,12 +8,14 @@ public static class DatabaseDiExtensions
 {
     public static void AddMySql(this IServiceCollection services)
     {
+        services.AddScoped<IDbConnectionManager, DbConnectionManager>();
+        
         services.AddDbContext<CursoEfContext>((serviceProvider, options) =>
             options
                 .UseLazyLoadingProxies()
                 .AddInterceptors(new ReadExampleInterceptor(),
                     new SecondLevelCacheInterceptor(serviceProvider.GetRequiredService<IMemoryCache>()))
-                .UseMySQL("server=127.0.0.1;port=4306;database=cursoEF;user=root;password=cursoEFpass"));
+                .UseMySQL(serviceProvider.GetRequiredService<IDbConnectionManager>().GetConnectionString()));
     }
 
     public static void AddSqlServer(this IServiceCollection services, IConfiguration configuration)
