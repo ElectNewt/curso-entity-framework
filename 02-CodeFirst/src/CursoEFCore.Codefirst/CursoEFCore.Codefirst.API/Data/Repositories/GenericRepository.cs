@@ -33,7 +33,7 @@ public abstract class GenericRepository<T, TId> : IGenericRepository<T, TId>
         return insertedValue.Entity;
     }
 
-    public async Task<T?> GetById(TId id)
+    public virtual async Task<T?> GetById(TId id)
         => await _context.Set<T>()
             .FirstAsync(a=>a.Id.Equals(id));
 

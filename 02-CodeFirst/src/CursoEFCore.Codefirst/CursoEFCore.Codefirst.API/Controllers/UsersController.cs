@@ -28,6 +28,10 @@ public class UsersController : Controller
     [HttpGet("{userId}")]
     public async Task<User?> GetById(int userId)
         => await _unitOfWork.UserRepository.GetByIdWithWorkingExperiences(userId);
+    
+    [HttpGet("onlyUser/{userId}")]
+    public async Task<User?> GetOnlyUserId(int userId)
+        => await _unitOfWork.UserRepository.GetById(userId);
 
     [HttpPost]
     public async Task<User> Create(int uniqueId)

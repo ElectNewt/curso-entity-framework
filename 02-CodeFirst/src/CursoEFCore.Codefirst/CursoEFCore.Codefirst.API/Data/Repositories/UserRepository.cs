@@ -8,8 +8,7 @@ public interface IUserRepository : IGenericRepository<User, int>
     Task<User?> GetByIdWithWorkingExperiences(int id);
 }
 
-
-public class UserRepository :  GenericRepository<User, int>, IUserRepository
+public class UserRepository : GenericRepository<User, int>, IUserRepository
 {
     public UserRepository(CursoEfContext context) : base(context)
     {
@@ -19,4 +18,9 @@ public class UserRepository :  GenericRepository<User, int>, IUserRepository
         => await Entities
             .Include(a => a.Wokringexperiences)
             .FirstOrDefaultAsync(x => x.Id == id);
+
+    public override async Task<User?> GetById(int id)
+        => await Entities
+            .FromSqlInterpolated($"SELECT * FROM get_user_by_id({id})")
+            .FirstOrDefaultAsync();
 }

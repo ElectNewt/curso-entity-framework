@@ -6,5 +6,5 @@ docker rm $(docker stop $(docker ps -a -q --filter ancestor='server-mysql' --for
 ##construir la imagen
 docker build -t server-mysql Tools\ServerMysql\.
 
-##iniciar el contenedor
-docker run -d -p 4306:3306 server-mysql
+##iniciar el contenedor (esto s posgress, solo que no le he cambiado el nombre)
+docker run -d -p 5432:5432 server-mysql
