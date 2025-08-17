@@ -1,6 +1,7 @@
 ﻿using CursoEFCore.Codefirst.API.Data.Entities;
 using CursoEFCore.Codefirst.API.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace CursoEFCore.Codefirst.API.Data;
 
@@ -19,6 +20,25 @@ public class CursoEfContext : DbContext
         modelBuilder.Entity<Wokringexperience>()
             .HasQueryFilter(a => !a.IsDeleted);
         
-        modelBuilder.ApplyConfiguration(new UserSeed());
+        
+        modelBuilder.Entity<User>()
+            .OwnsOne<Address>(user=>user.Address)
+            .ToJson();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSeeding((ctx, _) =>
+        {
+            if (!ctx.Set<User>().Any())
+            {
+                ctx.Set<User>().AddRange(UserSeed.BuildUsers());
+                ctx.SaveChanges();
+            }
+        });
+        
+        base.OnConfiguring(optionsBuilder);
+        
+        
     }
 }
